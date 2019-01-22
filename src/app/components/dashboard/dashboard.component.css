@@ -1,4 +1,19 @@
-section {
+section:first-of-type {
+  display: grid;
+}
+
+section:first-of-type input {
+  border: none;
+  background-color: #F3F6F7;
+  padding: 20px;
+  font-size: 20px;
+}
+
+section:first-of-type input::placeholder {
+  color: #BDCACF;
+}
+
+section:last-of-type {
   display: grid;
   grid-template-columns: minmax(auto, 1250px);
   justify-content: center;

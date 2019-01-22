@@ -12,7 +12,21 @@ async function getSeries() {
   console.log(body)
   return body
 }
+
+async function getMovieByName(name: string) {
+  const query = await fetch(`https://api.themoviedb.org/3/search/movie?api_key=${environment.key}&query=${name}`)
+  const body = await query.json()
+  return body
+}
+
+async function getSerieByName(name: string) {
+  const query = await fetch(`https://api.themoviedb.org/3/search/tv?api_key=${environment.key}&query=${name}`)
+  const body = await query.json()
+  return body
+}
 export {
   getMovies,
-  getSeries
+  getSeries,
+  getMovieByName,
+  getSerieByName
 }

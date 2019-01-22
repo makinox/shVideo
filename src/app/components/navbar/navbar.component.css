@@ -45,18 +45,3 @@ nav section div:first-of-type a:hover {
 nav section div:first-of-type a:active {
   border: none;
 }
-
-.navbar-section-search {
-  display: grid;
-}
-
-.navbar-section-search input {
-  border: none;
-  background-color: #F3F6F7;
-  padding: 20px;
-  font-size: 20px;
-}
-
-.navbar-section-search input::placeholder {
-  color: #BDCACF;
-}

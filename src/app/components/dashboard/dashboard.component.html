@@ -1,4 +1,8 @@
 <section>
+  <input type="text" placeholder="Search for a movie, series and videos" [formControl]="name" (ngModelChange)="handleChange($event)" >
+</section>
+
+<section>
   <div class="header">
     <h2>Descubra nuevas películas y programas de televisión</h2>
   </div>
@@ -28,7 +32,8 @@
     <div class="dashboard-card" *ngFor="let item of data">
 
       <div class="card-head">
-        <img [src]="'https://image.tmdb.org/t/p/w200/' + item.poster_path" [alt]="item.original_title">
+        <img [src]="'https://image.tmdb.org/t/p/w200/' + item.poster_path " [alt]="item.original_title" *ngIf="item.poster_path">
+        <img [src]="'https://picsum.photos/150/220'" [alt]="item.original_title" *ngIf="!item.poster_path">
       </div>
 
       <div class="card-body">
