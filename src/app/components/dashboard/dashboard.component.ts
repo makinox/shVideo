@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { getMovies, getSeries, getMovieByName, getSerieByName } from '../../services/api.service';
+import { getMovies, getSeries, getMovieByName, getSerieByName, getMovieGenres } from '../../services/api.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -12,6 +12,7 @@ export class DashboardComponent implements OnInit {
   constructor() { }
 
   data: Array<Object>
+  genres: Array<Object>
   name = new FormControl('');
 
   ngOnInit() {
@@ -20,14 +21,19 @@ export class DashboardComponent implements OnInit {
 
   async getData() {
     let data = {}
+    let genres = {}
     if (window.location.pathname === "/series") {
       data = await getSeries()
+      genres = await getMovieGenres()
     } else if (window.location.pathname === "/favoritos") {
       data = await getMovies()
+      genres = await getMovieGenres()
     } else {
       data = await getMovies()
+      genres = await getMovieGenres()
     }
     this.data = data['results']
+    this.genres = genres['genres']
   }
 
   async handleChange(el: string) {
