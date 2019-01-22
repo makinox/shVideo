@@ -4,13 +4,16 @@
       <a routerLink="/"><img src="../../assets/logo.svg" alt="Logo"></a>
     </div>
     <div>
-      <a routerLink="/movies" >Movies</a>
+      <a routerLink="/movies" [routerLinkActive]="['active']">Movies</a>
     </div>
     <div>
-      <a routerLink="/series" >Series</a>
+      <a routerLink="/series" [routerLinkActive]="['active']">Series</a>
     </div>
     <div>
-      <a routerLink="/favoritos" >Favoritos</a>
+      <a routerLink="/favoritos" [routerLinkActive]="['active']">Favoritos</a>
     </div>
   </section>
 </nav>
+<section class="navbar-section-search">
+  <input type="text" placeholder="Search for a movie, series and videos">
+</section>

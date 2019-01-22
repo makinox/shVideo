@@ -3,7 +3,6 @@ nav {
   grid-template-columns: minmax(auto, 1220px);
   justify-content: center;
   background-color: rgba(255, 255, 255, .9);
-  box-shadow: 0 3px 3px 1px rgba(0, 0, 0, .1);
 }
 
 nav section {
@@ -16,7 +15,7 @@ nav section {
 
 nav section img {
   height: 40px;
-  width: 40px;
+  width: 180px;
 }
 
 nav section a {
@@ -26,12 +25,17 @@ nav section a {
 
 nav section a:hover {
   color: #4ed3ff;
-  border-bottom: 1px solid #4ed3ff;
+  border-bottom: 2px solid #4ed3ff;
 }
 
 nav section a:active {
   color: #0ABFFE;
-  border-bottom: 1px solid #0ABFFE;
+  border-bottom: 2px solid #0ABFFE;
+}
+
+.active {
+  color: #0ABFFE !important;
+  border-bottom: 2px solid #0ABFFE;
 }
 
 nav section div:first-of-type a:hover {
@@ -40,4 +44,19 @@ nav section div:first-of-type a:hover {
 
 nav section div:first-of-type a:active {
   border: none;
+}
+
+.navbar-section-search {
+  display: grid;
+}
+
+.navbar-section-search input {
+  border: none;
+  background-color: #F3F6F7;
+  padding: 20px;
+  font-size: 20px;
+}
+
+.navbar-section-search input::placeholder {
+  color: #BDCACF;
 }
