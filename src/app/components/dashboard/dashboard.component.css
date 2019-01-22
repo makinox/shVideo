@@ -127,3 +127,7 @@ section {
   cursor: pointer;
   color: #b4b4b4
 }
+
+.dashboard-without {
+  text-align: center
+}

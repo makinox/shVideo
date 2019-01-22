@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { getMovies } from '../../services/api.service';
+import { getMovies, getSeries } from '../../services/api.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -12,10 +12,20 @@ export class DashboardComponent implements OnInit {
 
   data: Array<Object>
 
-  async ngOnInit() {
-    const data = await getMovies()
-    this.data = data.results
-    console.log(this.data)
+  ngOnInit() {
+    this.getData()
+  }
+
+  async getData() {
+    let data = {}
+    if (window.location.pathname === "/series") {
+      data = await getSeries()
+    } else if (window.location.pathname === "/favoritos") {
+      data = await getMovies()
+    } else {
+      data = await getMovies()
+    }
+    this.data = data['results']
   }
 
 }

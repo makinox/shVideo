@@ -7,8 +7,9 @@ async function getMovies() {
 }
 
 async function getSeries() {
-  const query = await fetch(`https://api.themoviedb.org/3/tv/popular/?api_key=${environment.key}`)
+  const query = await fetch(`https://api.themoviedb.org/3/tv/popular?api_key=${environment.key}`)
   const body = await query.json()
+  console.log(body)
   return body
 }
 export {

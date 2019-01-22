@@ -24,7 +24,7 @@
       </select>
     </div>
   </div>
-  <div class="dashboard-body">
+  <div class="dashboard-body" *ngIf="data">
     <div class="dashboard-card" *ngFor="let item of data">
 
       <div class="card-head">
@@ -33,12 +33,12 @@
 
       <div class="card-body">
         <div class="card-body-head">
-          <h4>{{item.original_title}}</h4>
+          <h4>{{item.original_title || item.original_name}}</h4>
           <span>{{item.vote_average}}</span>
         </div>
         <div class="card-body-info">
           <span>2 horas</span>
-          <span>{{item.release_date}}</span>
+          <span>{{item.release_date || item.first_air_date}}</span>
           <span>{{item.genre_ids}}</span>
         </div>
         <div class="card-body-text">
@@ -56,5 +56,8 @@
       </div>
 
     </div>
+  </div>
+  <div class="dashboard-without" *ngIf="!data">
+    <h2>Un momento por favor</h2>
   </div>
 </section>
