@@ -1,3 +1,42 @@
-<p>
-  dashboard works!
-</p>
+<section>
+  <div class="dashboard-header">
+    <input type="text">
+  </div>
+  <div class="dashboard-options">
+    <select name="" id=""></select>
+    <select name="" id=""></select>
+  </div>
+  <div class="dashboard-body">
+    <div class="card">
+      
+      <div class="card-head">
+        <img [src]="'https://image.tmdb.org/t/p/w200/' + data[0].poster_path" [alt]="data[0].original_title">
+      </div>
+
+      <div class="card-body">
+        <div class="card-body-head">
+          <h4>{{data[0].original_title}}</h4>
+          <span>{{data[0].vote_average}}</span>
+        </div>
+        <div class="card-body-info">
+          <span>2 horas</span>
+          <span>{{data[0].release_date}}</span>
+          <span>{{data[0].genre_ids}}</span>
+        </div>
+        <div class="card-body-text">
+          <p>{{data[0].overview}}</p>
+        </div>
+        <div class="card-body-actions">
+          <div>
+            <button>Ver Trailer</button>
+          </div>
+          <div>
+            <span>Ver trailer</span>
+            <span>>3</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
