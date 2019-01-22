@@ -1,7 +1,39 @@
 section {
   display: grid;
-  grid-template-columns: minmax(auto, 1200px);
+  grid-template-columns: minmax(auto, 1250px);
   justify-content: center;
+}
+
+.dashboard-options {
+  display: flex;
+  justify-content: left;
+}
+
+.dashboard-options div {
+  display: grid
+}
+
+.dashboard-options div label {
+  margin: 10px 0;
+}
+
+.dashboard-options div:last-of-type {
+  margin-left: 60px;
+}
+
+.dashboard-options div select {
+  border: none;
+  box-shadow: 0 0 1px 1px rgba(0, 0, 0, .1);
+  margin-bottom: 40px;
+  padding: 7px 20px;
+}
+
+.dashboard-options div:first-of-type select {
+  width: 100px;
+}
+
+.dashboard-options div:last-of-type select {
+  width: 200px;
 }
 
 .dashboard-body {
@@ -83,6 +115,7 @@ section {
 }
 
 .card-body .card-body-actions button {
+  cursor: pointer;
   background-color: #fff;
   padding: 7px 10px;
   color: #0ABFFE;
@@ -91,5 +124,6 @@ section {
 }
 
 .card-body .card-body-actions span {
+  cursor: pointer;
   color: #b4b4b4
 }
