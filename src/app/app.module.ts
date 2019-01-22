@@ -5,7 +5,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
-import { CardsComponent } from './components/cards/cards.component';
 import { ModalComponent } from './components/modal/modal.component';
 
 @NgModule({
@@ -13,7 +12,6 @@ import { ModalComponent } from './components/modal/modal.component';
     AppComponent,
     NavbarComponent,
     DashboardComponent,
-    CardsComponent,
     ModalComponent
   ],
   imports: [

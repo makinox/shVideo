@@ -1,17 +1,29 @@
-.card {
+section {
+  display: grid;
+  grid-template-columns: minmax(auto, 1200px);
+  justify-content: center;
+}
+
+.dashboard-body {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(auto, 1fr));
+  grid-gap: 25px;
+}
+
+.dashboard-card {
   display: grid;
   grid-template-columns: .3fr 7fr;
   box-shadow: 0 0 1px 1px  rgba(0, 0, 0, .2);
 }
 
-.card .card-head:first-of-type {
+.dashboard-card .card-head:first-of-type {
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
   align-items: flex-start;
 }
 
-.card .card-head:first-of-type img {
+.dashboard-card .card-head:first-of-type img {
   width: auto;
   height: auto;
   max-width: 180px;
@@ -33,7 +45,11 @@
 }
 
 .card-body .card-body-head h4 {
-  margin: 0
+  margin: 0;
+  width: 290px;
+  height: 20px;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .card-body .card-body-info {
