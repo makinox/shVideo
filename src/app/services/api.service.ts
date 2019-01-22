@@ -1,9 +1,17 @@
-import { Injectable } from '@angular/core';
+import {environment} from '../../environments/environment'
 
-@Injectable({
-  providedIn: 'root'
-})
-export class ApiService {
+async function getMovies() {
+  const query = await fetch(`https://api.themoviedb.org/3/movie/popular?api_key=${environment.key}`)
+  const body = await query.json()
+  return body
+}
 
-  constructor() { }
+async function getSeries() {
+  const query = await fetch(`https://api.themoviedb.org/3/tv/popular/?api_key=${environment.key}`)
+  const body = await query.json()
+  return body
+}
+export {
+  getMovies,
+  getSeries
 }

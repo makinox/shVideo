@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { getMovies } from '../../services/api.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -9,7 +10,12 @@ export class DashboardComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit() {
+  data: Array<Object>
+
+  async ngOnInit() {
+    const data = await getMovies()
+    this.data = data.results
+    console.log(this.data)
   }
 
 }
