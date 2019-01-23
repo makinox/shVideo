@@ -6,27 +6,33 @@
   <div class="header">
     <h2>Descubra nuevas películas y programas de televisión</h2>
   </div>
+  
   <div class="dashboard-options">
     <div>
       <label>Año</label>
-      <select name="" >
-        <option value="2016">2016</option>
-        <option value="2015">2015</option>
-        <option value="2014">2014</option>
-        <option value="2013">2013</option>
-        <option value="2012">2012</option>
-        <option value="2011">2011</option>
-        <option value="2010">2010</option>
-        <option value="2009">2009</option>
+      <select [formControl]="year" (ngModelChange)="handleFilters()">
+        <option value="" selected>2019</option>
+        <option value="2018" >2018</option>
+        <option value="2017" >2017</option>
+        <option value="2016" >2016</option>
+        <option value="2015" >2015</option>
+        <option value="2014" >2014</option>
+        <option value="2013" >2013</option>
+        <option value="2012" >2012</option>
+        <option value="2011" >2011</option>
+        <option value="2010" >2010</option>
+        <option value="2009" >2009</option>
       </select>
     </div>
     <div>
       <label>Género</label>
-      <select name="">
-        <option [value]="genre.name" *ngFor="let genre of genres">{{genre.name}}</option>
+      <select [formControl]="genero" (ngModelChange)="handleFilters()">
+        <option value="" disabled selected>Select your option</option>
+        <option [value]="genre.id" *ngFor="let genre of genres" >{{genre.name}}</option>
       </select>
     </div>
   </div>
+
   <div class="dashboard-body" *ngIf="data">
     <div class="dashboard-card" *ngFor="let item of data">
 

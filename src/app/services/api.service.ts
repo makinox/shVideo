@@ -31,10 +31,25 @@ async function getMovieGenres() {
   const body = await query.json()
   return body
 }
+
+async function getMoviesByFilters(year: string = '', genre: string = '') {
+  const query = await fetch(`${base}discover/movie?api_key=${environment.key}&sort_by=popularity.desc&with_genres=${genre}&year=${year}`)
+  const body = await query.json()
+  return body
+}
+
+async function getSeriesByFilters(year: string = '', genre: string = '') {
+  const query = await fetch(`${base}discover/tv?api_key=${environment.key}&sort_by=popularity.desc&with_genres=${genre}&year=${year}`)
+  const body = await query.json()
+  return body
+}
+
 export {
   getMovies,
   getSeries,
   getMovieByName,
   getSerieByName,
-  getMovieGenres
+  getMovieGenres,
+  getMoviesByFilters,
+  getSeriesByFilters
 }
