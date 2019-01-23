@@ -51,11 +51,11 @@ export class DashboardComponent implements OnInit {
       // console.log(el)
       let data = {}
       if (window.location.pathname === "/series") {
-        data = await getSerieByName(el)
+        data = await getSerieByName(el.trim(), this.year.value)
       } else if (window.location.pathname === "/favoritos") {
         data = await getMovies()
       } else {
-        data = await getMovieByName(el)
+        data = await getMovieByName(el.trim(), this.year.value)
       }
       this.data = data['results']
     } else {

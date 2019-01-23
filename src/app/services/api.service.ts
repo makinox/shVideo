@@ -14,14 +14,14 @@ async function getSeries() {
   return body
 }
 
-async function getMovieByName(name: string) {
-  const query = await fetch(`${base}search/movie?api_key=${environment.key}&query=${name}`)
+async function getMovieByName(name: string, search: string = '') {
+  const query = await fetch(`${base}search/movie?api_key=${environment.key}&query=${name}&year=${search}`)
   const body = await query.json()
   return body
 }
 
-async function getSerieByName(name: string) {
-  const query = await fetch(`${base}search/tv?api_key=${environment.key}&query=${name}`)
+async function getSerieByName(name: string, search: string = '') {
+  const query = await fetch(`${base}search/tv?api_key=${environment.key}&query=${name}&year=${search}`)
   const body = await query.json()
   return body
 }
