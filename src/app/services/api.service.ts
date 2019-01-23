@@ -44,6 +44,12 @@ async function getSeriesByFilters(year: string = '', genre: string = '', page: n
   return body
 }
 
+async function getVideo(video: string) {
+  const query = await fetch(`${base}movie/${video}/videos?api_key=${environment.key}`)
+  const body = await query.json()
+  return body
+}
+
 export {
   getMovies,
   getSeries,
@@ -51,5 +57,6 @@ export {
   getSerieByName,
   getMovieGenres,
   getMoviesByFilters,
-  getSeriesByFilters
+  getSeriesByFilters,
+  getVideo
 }

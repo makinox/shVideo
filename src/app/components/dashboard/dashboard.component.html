@@ -1,34 +1,34 @@
 <section>
-  <input type="text" placeholder="Search for a movie, series and videos" [formControl]="name" (ngModelChange)="handleChange($event)" >
+  <input type="text" placeholder="Search for a movie, series and videos" [formControl]="name" (ngModelChange)="handleChange($event)">
 </section>
 
 <section>
   <div>
     <h2>Descubra nuevas películas y programas de televisión</h2>
   </div>
-  
+
   <div class="dashboard-options">
     <div>
       <label>Año</label>
       <select [formControl]="year" (ngModelChange)="handleFilters()">
         <option value="" selected>2019</option>
-        <option value="2018" >2018</option>
-        <option value="2017" >2017</option>
-        <option value="2016" >2016</option>
-        <option value="2015" >2015</option>
-        <option value="2014" >2014</option>
-        <option value="2013" >2013</option>
-        <option value="2012" >2012</option>
-        <option value="2011" >2011</option>
-        <option value="2010" >2010</option>
-        <option value="2009" >2009</option>
+        <option value="2018">2018</option>
+        <option value="2017">2017</option>
+        <option value="2016">2016</option>
+        <option value="2015">2015</option>
+        <option value="2014">2014</option>
+        <option value="2013">2013</option>
+        <option value="2012">2012</option>
+        <option value="2011">2011</option>
+        <option value="2010">2010</option>
+        <option value="2009">2009</option>
       </select>
     </div>
     <div>
       <label>Género</label>
       <select [formControl]="genero" (ngModelChange)="handleFilters()">
         <option value="" disabled selected>Select your option</option>
-        <option [value]="genre.id" *ngFor="let genre of genres" >{{genre.name}}</option>
+        <option [value]="genre.id" *ngFor="let genre of genres">{{genre.name}}</option>
       </select>
     </div>
   </div>
@@ -56,10 +56,10 @@
         </div>
         <div class="card-body-actions">
           <div>
-            <button>Ver Trailer</button>
+            <button (click)="handleModal(item.id)">Ver Trailer</button>
           </div>
           <div>
-            <span>Ver trailer</span>
+            <span>Favoritos</span>
             <span>>3</span>
           </div>
         </div>
@@ -77,6 +77,22 @@
     </div>
     <div (click)="handlePage(1)">
       <span>➡</span>
+    </div>
+  </div>
+
+  <div class="dashboard-modal" *ngIf="modal">
+    <div class="dashboard-modal-content">
+      <div class="dashboard-modal-header">
+        <div>
+          <h2></h2>
+        </div>
+        <div>
+          <button (click)="handleModal()"><span>&times;</span></button>
+        </div>
+      </div>
+      <div class="dashboard-modal-body">
+        <iframe [src]="videoModal" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </div>
     </div>
   </div>
 </section>

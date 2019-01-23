@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core'
 import { FormControl } from '@angular/forms'
+import {DomSanitizer, SafeResourceUrl} from '@angular/platform-browser';
 import {
   getMovies,
   getSeries,
@@ -7,7 +8,8 @@ import {
   getSerieByName,
   getMovieGenres,
   getMoviesByFilters,
-  getSeriesByFilters
+  getSeriesByFilters,
+  getVideo
 } from '../../services/api.service'
 
 @Component({
@@ -17,7 +19,7 @@ import {
 })
 export class DashboardComponent implements OnInit {
 
-  constructor() { }
+  constructor(private sanitizer: DomSanitizer) { }
 
   data: Array<Object>
   genres: Array<Object>
@@ -25,6 +27,8 @@ export class DashboardComponent implements OnInit {
   genero = new FormControl('')
   year = new FormControl('')
   last: string
+  modal: boolean = false
+  videoModal: SafeResourceUrl = 'https://www.youtube.com/embed/dgCnYsDTiXU'
 
   ngOnInit() {
     this.getData()
@@ -44,13 +48,13 @@ export class DashboardComponent implements OnInit {
       genres = await getMovieGenres(this.returnPage(true))
     }
     this.data = data['results']
+    // console.log(this.data)
     this.genres = genres['genres']
     this.last = 'data'
   }
 
   async handleChange() {
     if (this.name.value) {
-      // console.log(this.name.value)
       let data: object = {}
       if (window.location.pathname === "/series") {
         data = await getSerieByName(this.name.value.trim(), this.year.value, this.returnPage(true))
@@ -105,6 +109,14 @@ export class DashboardComponent implements OnInit {
     } else {
       return page
     }
+  }
+
+  async handleModal(video: string = '') {
+    this.modal = !this.modal
+    // this.videoModal = video
+    const {results} = await getVideo(video)
+    console.log(this.sanitizer.bypassSecurityTrustResourceUrl('https://www.youtube.com/embed/' + 'dgCnYsDTiXU'))
+    this.videoModal = this.sanitizer.bypassSecurityTrustResourceUrl('https://www.youtube.com/embed/' + 'dgCnYsDTiXU')
   }
 
 }
