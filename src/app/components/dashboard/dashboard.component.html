@@ -3,7 +3,7 @@
 </section>
 
 <section>
-  <div class="header">
+  <div>
     <h2>Descubra nuevas películas y programas de televisión</h2>
   </div>
   
@@ -69,5 +69,14 @@
   </div>
   <div class="dashboard-without" *ngIf="!data">
     <h2>Un momento por favor</h2>
+  </div>
+
+  <div class="dashboard-footer">
+    <div (click)="handlePage(0)">
+      <span>⬅</span>
+    </div>
+    <div (click)="handlePage(1)">
+      <span>➡</span>
+    </div>
   </div>
 </section>

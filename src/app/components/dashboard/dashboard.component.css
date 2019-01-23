@@ -146,3 +146,16 @@ section:last-of-type {
 .dashboard-without {
   text-align: center
 }
+
+.dashboard-footer {
+  display: flex;
+  justify-content: center;
+}
+
+.dashboard-footer div {
+  cursor: pointer;
+  padding: 7px 10px;
+  border-radius: 7px;
+  margin: 10px;
+  border: 1px #0ABFFE solid;
+}

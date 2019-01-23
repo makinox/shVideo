@@ -30,17 +30,17 @@ export class DashboardComponent implements OnInit {
   }
 
   async getData() {
-    let data = {}
-    let genres = {}
+    let data: object = {}
+    let genres: object = {}
     if (window.location.pathname === "/series") {
-      data = await getSeries()
-      genres = await getMovieGenres()
+      data = await getSeries(this.returnPage(true))
+      genres = await getMovieGenres(this.returnPage(true))
     } else if (window.location.pathname === "/favoritos") {
-      data = await getMovies()
-      genres = await getMovieGenres()
+      data = await getMovies(this.returnPage(true))
+      genres = await getMovieGenres(this.returnPage(true))
     } else {
-      data = await getMovies()
-      genres = await getMovieGenres()
+      data = await getMovies(this.returnPage(true))
+      genres = await getMovieGenres(this.returnPage(true))
     }
     this.data = data['results']
     this.genres = genres['genres']
@@ -49,13 +49,13 @@ export class DashboardComponent implements OnInit {
   async handleChange(el: string) {
     if (el) {
       // console.log(el)
-      let data = {}
+      let data: object = {}
       if (window.location.pathname === "/series") {
-        data = await getSerieByName(el.trim(), this.year.value)
+        data = await getSerieByName(el.trim(), this.year.value, this.returnPage(true))
       } else if (window.location.pathname === "/favoritos") {
-        data = await getMovies()
+        data = await getMovies(this.returnPage(true))
       } else {
-        data = await getMovieByName(el.trim(), this.year.value)
+        data = await getMovieByName(el.trim(), this.year.value, this.returnPage(true))
       }
       this.data = data['results']
     } else {
@@ -64,15 +64,35 @@ export class DashboardComponent implements OnInit {
   }
 
   async handleFilters() {
-    let data = {}
+    let data: object = {}
     if (window.location.pathname === "/series") {
-      data = await getSeriesByFilters(this.year.value, this.genero.value)
+      data = await getSeriesByFilters(this.year.value, this.genero.value, this.returnPage(true))
     } else if (window.location.pathname === "/favoritos") {
-      data = await getMovies()
+      data = await getMovies(this.returnPage(true))
     } else {
-      data = await getMoviesByFilters(this.year.value, this.genero.value)
+      data = await getMoviesByFilters(this.year.value, this.genero.value, this.returnPage(true))
     }
     this.data = data['results']
+  }
+
+  handlePage(direction: string) {
+    let page: number = this.returnPage()
+    if (direction) {
+      page++
+      window.location.hash = `page=${page}`
+    } else {
+      if (page) page--
+      window.location.hash = `page=${page}`
+    }
+  }
+
+  returnPage(increase: boolean = false) {
+    let page: number = window.location.hash ? parseInt(window.location.hash.split('=')[1], 10) : 0
+    if (increase){
+      return page++
+    } else {
+      return page
+    }
   }
 
 }
