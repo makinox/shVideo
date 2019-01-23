@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { Component, OnInit } from '@angular/core'
+import { FormControl } from '@angular/forms'
 import {
   getMovies,
   getSeries,
@@ -8,7 +8,7 @@ import {
   getMovieGenres,
   getMoviesByFilters,
   getSeriesByFilters
-} from '../../services/api.service';
+} from '../../services/api.service'
 
 @Component({
   selector: 'app-dashboard',
@@ -21,9 +21,10 @@ export class DashboardComponent implements OnInit {
 
   data: Array<Object>
   genres: Array<Object>
-  name = new FormControl('');
-  genero = new FormControl('');
-  year = new FormControl('');
+  name = new FormControl('')
+  genero = new FormControl('')
+  year = new FormControl('')
+  last: string
 
   ngOnInit() {
     this.getData()
@@ -44,22 +45,25 @@ export class DashboardComponent implements OnInit {
     }
     this.data = data['results']
     this.genres = genres['genres']
+    this.last = 'data'
   }
 
-  async handleChange(el: string) {
-    if (el) {
-      // console.log(el)
+  async handleChange() {
+    if (this.name.value) {
+      // console.log(this.name.value)
       let data: object = {}
       if (window.location.pathname === "/series") {
-        data = await getSerieByName(el.trim(), this.year.value, this.returnPage(true))
+        data = await getSerieByName(this.name.value.trim(), this.year.value, this.returnPage(true))
       } else if (window.location.pathname === "/favoritos") {
         data = await getMovies(this.returnPage(true))
       } else {
-        data = await getMovieByName(el.trim(), this.year.value, this.returnPage(true))
+        data = await getMovieByName(this.name.value.trim(), this.year.value, this.returnPage(true))
       }
       this.data = data['results']
+      this.last = 'search'
     } else {
       this.getData()
+      this.last = 'data'
     }
   }
 
@@ -73,6 +77,7 @@ export class DashboardComponent implements OnInit {
       data = await getMoviesByFilters(this.year.value, this.genero.value, this.returnPage(true))
     }
     this.data = data['results']
+    this.last = 'filters'
   }
 
   handlePage(direction: string) {
@@ -84,12 +89,19 @@ export class DashboardComponent implements OnInit {
       if (page) page--
       window.location.hash = `page=${page}`
     }
+    if (this.last === 'data') {
+      this.getData()
+    } else if (this.last === 'search') {
+      this.handleChange()
+    } else {
+      this.handleFilters()
+    }
   }
 
   returnPage(increase: boolean = false) {
     let page: number = window.location.hash ? parseInt(window.location.hash.split('=')[1], 10) : 0
     if (increase){
-      return page++
+      return page = page + 1
     } else {
       return page
     }
