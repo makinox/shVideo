@@ -60,13 +60,13 @@
           <div>
             <button (click)="handleModal(item.id)">Ver Trailer</button>
           </div>
-          <div (click)="addFavorites(item)" *ngIf="!isFavoritePage">
-            <span>Favoritos</span>
-            <span>>3</span>
+          <div (click)="addFavorites(item)" class="card-body-fav" *ngIf="!isFavoritePage">
+            <span>Favoritos </span>
+            <span>❤</span>
           </div>
           <div (click)="removeFavorites(item)" *ngIf="isFavoritePage">
             <span>Remover</span>
-            <span>:(</span>
+            <span>🙁</span>
           </div>
         </div>
         

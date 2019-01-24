@@ -140,11 +140,33 @@ section:last-of-type {
   color: #0ABFFE;
   border: 1px #0ABFFE solid;
   border-radius: 7px;
+  transition: 0.3s ease;
+}
+
+.card-body .card-body-actions button:hover {
+  background-color: #0ABFFE;
+  color: #fff;
+  border: 1px #0ABFFE solid;
+  box-shadow: 3px 3px 10px 0 rgba(0, 0, 0, .2);
+}
+
+.card-body .card-body-actions button:active {
+  background-color: #0270E7;
+  border: 1px #0270E7 solid;
+  box-shadow: 2px 2px 10px 0 rgba(0, 0, 0, .2);
 }
 
 .card-body .card-body-actions span {
   cursor: pointer;
   color: #b4b4b4
+}
+
+.card-body-fav:hover span {
+  color: #ff4949 !important
+}
+
+.card-body-fav:active span {
+  color: #ff0000 !important
 }
 
 .dashboard-without {
@@ -162,6 +184,20 @@ section:last-of-type {
   border-radius: 7px;
   margin: 10px;
   border: 1px #0ABFFE solid;
+  transition: 0.3s ease;
+}
+
+.dashboard-footer div:hover {
+  background-color: #0ABFFE;
+  color: #fff;
+  border: 1px #0ABFFE solid;
+  box-shadow: 3px 3px 10px 0 rgba(0, 0, 0, .2);
+}
+
+.dashboard-footer div:active {
+  background-color: #0270E7;
+  border: 1px #0270E7 solid;
+  box-shadow: 2px 2px 10px 0 rgba(0, 0, 0, .2);
 }
 
 .dashboard-modal {

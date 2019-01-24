@@ -132,11 +132,13 @@ export class DashboardComponent implements OnInit {
       this.favorites = [media]
     }
     await localStorage.setItem('favorites', JSON.stringify(this.favorites));
+    window.alert('Agregado a favoritos! 🙂')
   }
 
   async removeFavorites(media: object) {
     this.favorites = this.favorites.filter((el) => el['id'] != media['id'])
     await localStorage.setItem('favorites', JSON.stringify(this.favorites));
+    window.alert('Removido de favoritos! 🙁')
     this.getData()
   }
 }
