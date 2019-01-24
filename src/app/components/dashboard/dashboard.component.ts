@@ -9,7 +9,8 @@ import {
   getMovieGenres,
   getMoviesByFilters,
   getSeriesByFilters,
-  getVideo
+  getVideo,
+  getFavorites
 } from '../../services/api.service'
 
 @Component({
@@ -28,7 +29,7 @@ export class DashboardComponent implements OnInit {
   year = new FormControl('')
   last: string
   modal: boolean = false
-  videoModal: SafeResourceUrl = 'https://www.youtube.com/embed/dgCnYsDTiXU'
+  videoModal: SafeResourceUrl
   favorites: Array<Object> 
 
   async ngOnInit() {
@@ -43,7 +44,7 @@ export class DashboardComponent implements OnInit {
       data = await getSeries(this.returnPage(true))
       genres = await getMovieGenres(this.returnPage(true))
     } else if (window.location.pathname === "/favoritos") {
-      data = await getMovies(this.returnPage(true))
+      data = await getFavorites()
       genres = await getMovieGenres(this.returnPage(true))
     } else {
       data = await getMovies(this.returnPage(true))
@@ -61,7 +62,7 @@ export class DashboardComponent implements OnInit {
       if (window.location.pathname === "/series") {
         data = await getSerieByName(this.name.value.trim(), this.year.value, this.returnPage(true))
       } else if (window.location.pathname === "/favoritos") {
-        data = await getMovies(this.returnPage(true))
+        data = await getFavorites()
       } else {
         data = await getMovieByName(this.name.value.trim(), this.year.value, this.returnPage(true))
       }
@@ -78,7 +79,7 @@ export class DashboardComponent implements OnInit {
     if (window.location.pathname === "/series") {
       data = await getSeriesByFilters(this.year.value, this.genero.value, this.returnPage(true))
     } else if (window.location.pathname === "/favoritos") {
-      data = await getMovies(this.returnPage(true))
+      data = await getFavorites()
     } else {
       data = await getMoviesByFilters(this.year.value, this.genero.value, this.returnPage(true))
     }
@@ -115,10 +116,7 @@ export class DashboardComponent implements OnInit {
 
   async handleModal(video: string = '') {
     this.modal = !this.modal
-    // this.videoModal = video
     const { results } = await getVideo(video)
-    console.log(results)
-    console.log(this.sanitizer.bypassSecurityTrustResourceUrl('https://www.youtube.com/embed/' + results[0]['key']))
     this.videoModal = this.sanitizer.bypassSecurityTrustResourceUrl('https://www.youtube.com/embed/' + results[0]['key'])
   }
 

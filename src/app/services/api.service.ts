@@ -49,6 +49,10 @@ async function getVideo(video: string) {
   return body
 }
 
+async function getFavorites() {
+  return await {results: JSON.parse(localStorage.getItem('favorites'))}
+}
+
 export {
   getMovies,
   getSeries,
@@ -57,5 +61,6 @@ export {
   getMovieGenres,
   getMoviesByFilters,
   getSeriesByFilters,
-  getVideo
+  getVideo,
+  getFavorites
 }
