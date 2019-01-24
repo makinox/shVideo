@@ -1,27 +1,25 @@
 # ShVideo
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.2.2.
+Una simp´le aplicación para obtener información de producciones multimedia.
 
-## Development server
+Para ver el proyecto en funcionamiento, [Click aqui](https://shvideo-abdkccgnoa.now.sh)
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+## Correr en entorno local
 
-## Code scaffolding
+### 1) Obtener el proyecto
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Descarga el proyecto como zip
 
-## Build
+o
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+Clonalo en tu pc `git clone https://github.com/makinox/shVideo.git`
 
-## Running unit tests
+### 2) Instala las dependencias
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+Instala todos las dependencias con `npm install` o `yarn`
 
-## Running end-to-end tests
+### 3) Corre el proyecto
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+Inicia el proyecto con `ng serve` o `npm start`
 
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+Muchas gracias
