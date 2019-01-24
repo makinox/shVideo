@@ -12,8 +12,8 @@ RUN npm install
 COPY . .
 
 # Run tests
-# RUN CI=true ng test
+# RUN npm run test --single-run --lint --code-coverage --no-browsers
 
 # Build the app and move the resulting build to the `/public` directory
 RUN npm run build
-RUN mv ./dist /public
+RUN mv ./dist/shVideo /public
