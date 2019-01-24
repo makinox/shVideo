@@ -119,7 +119,11 @@ export class DashboardComponent implements OnInit {
   async handleModal(video: string = '') {
     this.modal = !this.modal
     const { results } = await getVideo(video)
-    this.videoModal = this.sanitizer.bypassSecurityTrustResourceUrl('https://www.youtube.com/embed/' + results[0]['key'])
+    try {
+      this.videoModal = this.sanitizer.bypassSecurityTrustResourceUrl('https://www.youtube.com/embed/' + results[0]['key'])
+    } catch {
+      this.videoModal = this.sanitizer.bypassSecurityTrustResourceUrl('https://www.youtube.com/embed/gXlwCEU_4t8')
+    }
   }
 
   async addFavorites(media: object) {
