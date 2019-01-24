@@ -44,11 +44,13 @@ section:last-of-type {
 }
 
 .dashboard-options div:first-of-type select {
-  width: 100px;
+  width: auto;
+  max-width: 100px;
 }
 
 .dashboard-options div:last-of-type select {
-  width: 200px;
+  width: auto;
+  max-width: 200px;
 }
 
 .dashboard-body {
@@ -93,8 +95,10 @@ section:last-of-type {
 
 .card-body .card-body-head h4 {
   margin: 0;
-  width: 290px;
-  height: 20px;
+  width: auto;
+  height: auto;
+  max-width: 290px;
+  max-height: 20px;
   overflow: hidden;
   text-overflow: ellipsis;
 }
@@ -202,6 +206,35 @@ section:last-of-type {
   border: 0;
   width: 100%;
   height: 60vh;
+}
+
+@media (max-width: 1125px) {
+  .dashboard-body {
+    grid-gap: 25px 2px;
+  }
+}
+
+@media (max-width: 1004px) {
+  section:last-of-type {
+    grid-template-columns: minmax(auto, 90%);
+  }
+
+  .dashboard-body {
+    grid-template-columns: minmax(auto, 1fr)
+  }
+}
+
+@media (max-width: 441px) {
+
+  .dashboard-options {
+    display: grid;
+    justify-content: center;
+    grid-template-columns: repeat(2, minmax(auto, 1fr));
+  }
+
+  .dashboard-card .card-head:first-of-type img {
+    max-width: 40vw;
+  }
 }
 
 @media (max-width: 480px) {
