@@ -1,10 +1,11 @@
 <section>
-  <input type="text" placeholder="Search for a movie, series and videos" [formControl]="name" (ngModelChange)="handleChange($event)">
+  <input type="text" placeholder="🔍 Busca películas, series o videos" [formControl]="name" (ngModelChange)="handleChange($event)">
 </section>
 
 <section>
-  <div>
-    <h2>Descubra nuevas películas y programas de televisión</h2>
+
+  <div class="dashboard-header">
+    <h1>Descubra nuevas películas y programas de televisión</h1>
   </div>
 
   <div class="dashboard-options">
@@ -27,7 +28,7 @@
     <div>
       <label>Género</label>
       <select [formControl]="genero" (ngModelChange)="handleFilters()">
-        <option value="" disabled selected>Select your option</option>
+        <option value="" disabled selected >Selecciona una categoría</option>
         <option [value]="genre.id" *ngFor="let genre of genres">{{genre.name}}</option>
       </select>
     </div>

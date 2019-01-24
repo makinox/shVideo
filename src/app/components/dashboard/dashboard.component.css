@@ -1,3 +1,9 @@
+.dashboard-header h1 {
+  color: #7A8E94;
+  font-weight: 400;
+  font-size: 23px;
+}
+
 section:first-of-type {
   display: grid;
 }
@@ -49,8 +55,7 @@ section:last-of-type {
 }
 
 .dashboard-options div:last-of-type select {
-  width: auto;
-  max-width: 200px;
+  width: 350px;
 }
 
 .dashboard-body {
@@ -260,6 +265,17 @@ section:last-of-type {
   }
 }
 
+@media (max-width: 600px) {
+
+  .dashboard-options div:last-of-type select {
+    width: auto;
+  }
+
+  .dashboard-modal-content {
+    width: 90%;
+  }
+}
+
 @media (max-width: 441px) {
 
   .dashboard-options {
@@ -270,11 +286,5 @@ section:last-of-type {
 
   .dashboard-card .card-head:first-of-type img {
     max-width: 40vw;
-  }
-}
-
-@media (max-width: 480px) {
-  .dashboard-modal-content {
-    width: 90%;
   }
 }
