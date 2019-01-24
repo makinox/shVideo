@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core'
 import { FormControl } from '@angular/forms'
-import {DomSanitizer, SafeResourceUrl} from '@angular/platform-browser';
+import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import {
   getMovies,
   getSeries,
@@ -29,9 +29,11 @@ export class DashboardComponent implements OnInit {
   last: string
   modal: boolean = false
   videoModal: SafeResourceUrl = 'https://www.youtube.com/embed/dgCnYsDTiXU'
+  favorites: Array<Object> 
 
-  ngOnInit() {
-    this.getData()
+  async ngOnInit() {
+    await this.getData()
+    this.favorites = await JSON.parse(localStorage.getItem('favorites'))
   }
 
   async getData() {
@@ -104,7 +106,7 @@ export class DashboardComponent implements OnInit {
 
   returnPage(increase: boolean = false) {
     let page: number = window.location.hash ? parseInt(window.location.hash.split('=')[1], 10) : 0
-    if (increase){
+    if (increase) {
       return page = page + 1
     } else {
       return page
@@ -114,10 +116,23 @@ export class DashboardComponent implements OnInit {
   async handleModal(video: string = '') {
     this.modal = !this.modal
     // this.videoModal = video
-    const {results} = await getVideo(video)
+    const { results } = await getVideo(video)
     console.log(results)
     console.log(this.sanitizer.bypassSecurityTrustResourceUrl('https://www.youtube.com/embed/' + results[0]['key']))
     this.videoModal = this.sanitizer.bypassSecurityTrustResourceUrl('https://www.youtube.com/embed/' + results[0]['key'])
+  }
+
+  async addFavorites(media: object) {
+    if (this.favorites) {
+      const el = this.favorites.filter((el) => el['id'] === media['id'])[0]
+      if (!el) {
+        this.favorites.push(media)
+      }
+    } else {
+      this.favorites = [media]
+    }
+
+    await localStorage.setItem('favorites', JSON.stringify(this.favorites));
   }
 
 }

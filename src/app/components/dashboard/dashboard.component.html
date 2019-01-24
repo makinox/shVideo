@@ -58,7 +58,7 @@
           <div>
             <button (click)="handleModal(item.id)">Ver Trailer</button>
           </div>
-          <div>
+          <div (click)="addFavorites(item)">
             <span>Favoritos</span>
             <span>>3</span>
           </div>
@@ -95,4 +95,5 @@
       </div>
     </div>
   </div>
+
 </section>
