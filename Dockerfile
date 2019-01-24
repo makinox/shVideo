@@ -15,5 +15,5 @@ COPY . .
 # RUN npm run test --single-run --lint --code-coverage --no-browsers
 
 # Build the app and move the resulting build to the `/public` directory
-RUN npm run build
+RUN npm run build --prod
 RUN mv ./dist/shVideo /public
