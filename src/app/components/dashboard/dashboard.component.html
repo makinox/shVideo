@@ -75,8 +75,13 @@
 
     </div>
   </div>
-  <div class="dashboard-without" *ngIf="!data">
+
+  <div class="dashboard-without" *ngIf="!data && !isFavoritePage">
     <h2>Un momento por favor</h2>
+  </div>
+
+  <div class="dashboard-without" *ngIf="!data && isFavoritePage">
+    <h2>No tienes favoritos aún</h2>
   </div>
 
   <div class="dashboard-footer" *ngIf="!isFavoritePage">
