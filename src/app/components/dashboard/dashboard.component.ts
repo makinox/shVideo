@@ -115,8 +115,9 @@ export class DashboardComponent implements OnInit {
     this.modal = !this.modal
     // this.videoModal = video
     const {results} = await getVideo(video)
-    console.log(this.sanitizer.bypassSecurityTrustResourceUrl('https://www.youtube.com/embed/' + 'dgCnYsDTiXU'))
-    this.videoModal = this.sanitizer.bypassSecurityTrustResourceUrl('https://www.youtube.com/embed/' + 'dgCnYsDTiXU')
+    console.log(results)
+    console.log(this.sanitizer.bypassSecurityTrustResourceUrl('https://www.youtube.com/embed/' + results[0]['key']))
+    this.videoModal = this.sanitizer.bypassSecurityTrustResourceUrl('https://www.youtube.com/embed/' + results[0]['key'])
   }
 
 }

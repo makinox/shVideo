@@ -10,7 +10,6 @@ async function getMovies(page: number = 1) {
 async function getSeries(page: number = 1) {
   const query = await fetch(`${base}tv/popular?api_key=${environment.key}&page=${page}`)
   const body = await query.json()
-  console.log(body)
   return body
 }
 
