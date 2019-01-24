@@ -30,11 +30,13 @@ export class DashboardComponent implements OnInit {
   last: string
   modal: boolean = false
   videoModal: SafeResourceUrl
-  favorites: Array<Object> 
+  favorites: Array<Object>
+  isFavoritePage: boolean = false
 
   async ngOnInit() {
     await this.getData()
     this.favorites = await JSON.parse(localStorage.getItem('favorites'))
+    this.isFavoritePage = (window.location.pathname === "/favoritos") ? true : false
   }
 
   async getData() {
@@ -129,8 +131,12 @@ export class DashboardComponent implements OnInit {
     } else {
       this.favorites = [media]
     }
-
     await localStorage.setItem('favorites', JSON.stringify(this.favorites));
   }
 
+  async removeFavorites(media: object) {
+    this.favorites = this.favorites.filter((el) => el['id'] != media['id'])
+    await localStorage.setItem('favorites', JSON.stringify(this.favorites));
+    this.getData()
+  }
 }
