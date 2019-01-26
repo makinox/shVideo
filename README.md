@@ -1,25 +1,25 @@
 # ShVideo
 
-Una simp´le aplicación para obtener información de producciones multimedia.
+A simple app to obtain information of multimedia productions.
 
-Para ver el proyecto en funcionamiento, [Click aqui](https://shvideo-qmwwuvvtkc.now.sh)
+To see the project in operation, [Click here](https://shvideo-vbrqnhaqcn.now.sh/)
 
-## Correr en entorno local
+## Run local enviroment
 
-### 1) Obtener el proyecto
+### 1) Get the project
 
-Descarga el proyecto como zip
+Download the project as zip
 
-o
+or
 
-Clonalo en tu pc `git clone https://github.com/makinox/shVideo.git`
+Clone in your pc `git clone https://github.com/makinox/shVideo.git`
 
-### 2) Instala las dependencias
+### 2) Install the dependencies
 
-Instala todos las dependencias con `npm install` o `yarn`
+Install all dependencies with `npm install` or `yarn`
 
-### 3) Corre el proyecto
+### 3) Run the project
 
-Inicia el proyecto con `ng serve` o `npm start`
+Start the project with `ng serve` or `npm start`
 
-Muchas gracias
+Thank you
