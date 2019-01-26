@@ -78,10 +78,8 @@ export class DashboardComponent implements OnInit {
 
   async handleFilters() {
     let data: object = {}
-    if (window.location.pathname === "/series") {
-      data = await getSeriesByFilters(this.year.value, this.genero.value, this.returnPage(true))
-    } else if (window.location.pathname === "/favoritos") {
-      data = await getFavorites()
+    if (this.year.value === '') {
+      data = await getMoviesByFilters('2019', this.genero.value, this.returnPage(true))
     } else {
       data = await getMoviesByFilters(this.year.value, this.genero.value, this.returnPage(true))
     }
