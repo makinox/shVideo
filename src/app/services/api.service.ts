@@ -38,8 +38,9 @@ async function getMoviesByFilters(year: string = '', genre: string = '', page: n
 }
 
 async function getSeriesByFilters(year: string = '2019', genre: string = '', page: number = 1) {
-  const query = await fetch(`${base}discover/tv?api_key=${environment.key}&sort_by=popularity.desc&with_genres=${genre}&year=${year}&page=${page}&&language=es-ES`)
+  const query = await fetch(`${base}discover/tv?api_key=${environment.key}&sort_by=popularity.desc&with_genres=${genre}&first_air_date_year=${year}&page=${page}&&language=es-ES`)
   const body = await query.json()
+  console.log(body)
   return body
 }
 
