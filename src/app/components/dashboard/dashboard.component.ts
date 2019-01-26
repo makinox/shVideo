@@ -35,26 +35,23 @@ export class DashboardComponent implements OnInit {
 
   async ngOnInit() {
     await this.getData()
+    let genres: object = {}
+    genres = await getMovieGenres(this.returnPage(true))
+    this.genres = genres['genres']
     this.favorites = await JSON.parse(localStorage.getItem('favorites'))
     this.isFavoritePage = (window.location.pathname === "/favoritos") ? true : false
   }
 
   async getData() {
     let data: object = {}
-    let genres: object = {}
     if (window.location.pathname === "/series") {
       data = await getSeries(this.returnPage(true))
-      genres = await getMovieGenres(this.returnPage(true))
     } else if (window.location.pathname === "/favoritos") {
       data = await getFavorites()
-      genres = await getMovieGenres(this.returnPage(true))
     } else {
       data = await getMovies(this.returnPage(true))
-      genres = await getMovieGenres(this.returnPage(true))
     }
     this.data = data['results']
-    // console.log(this.data)
-    this.genres = genres['genres']
     this.last = 'data'
   }
 
@@ -78,10 +75,12 @@ export class DashboardComponent implements OnInit {
 
   async handleFilters() {
     let data: object = {}
-    if (this.year.value === '') {
-      data = await getMoviesByFilters('2019', this.genero.value, this.returnPage(true))
+    if (window.location.pathname === "/series") {
+      data = await getSeriesByFilters('2019', this.genero.value, this.returnPage(true))
+    } else if (window.location.pathname === "/favoritos") {
+      data = await getFavorites()
     } else {
-      data = await getMoviesByFilters(this.year.value, this.genero.value, this.returnPage(true))
+      data = await getMoviesByFilters('2019', this.genero.value, this.returnPage(true))
     }
     this.data = data['results']
     this.last = 'filters'
