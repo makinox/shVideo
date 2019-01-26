@@ -2,7 +2,7 @@
 
 A simple app to obtain information of multimedia productions.
 
-To see the project in operation, [Click here](https://shvideo-vbrqnhaqcn.now.sh/)
+To see the project in operation, [Click here](https://shvideo-tzncibwndt.now.sh/)
 
 ## Run local enviroment
 
