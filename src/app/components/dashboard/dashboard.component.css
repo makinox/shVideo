@@ -133,7 +133,8 @@ section:last-of-type {
 
 .card-body .card-body-text {
   height: 80px;
-  width: 400px;
+  width: auto;
+  max-width: 400px;
   margin: 13px 0;
   font-size: 15px;
   overflow: hidden;
