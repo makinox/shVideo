@@ -68,6 +68,12 @@ section:last-of-type {
   display: grid;
   grid-template-columns: .3fr 7fr;
   box-shadow: 0 0 1px 1px  rgba(0, 0, 0, .2);
+  transition: .2s ease;
+}
+
+.dashboard-card:hover {
+  box-shadow: 0 0 20px 1px  rgba(0, 0, 0, .2);
+  transform: scale(1.02);
 }
 
 .dashboard-card .card-head:first-of-type {
@@ -87,7 +93,9 @@ section:last-of-type {
 }
 
 .card-body {
+  position: relative;
   padding: 17px;
+  z-index: -1;
 }
 
 .card-body .card-body-head {
@@ -125,11 +133,24 @@ section:last-of-type {
 
 .card-body .card-body-text {
   height: 80px;
+  width: 400px;
   margin: 13px 0;
   font-size: 15px;
   overflow: hidden;
-  text-overflow:ellipsis;
+  text-overflow: ellipsis;
   color: #7A8E94;
+  background-color: #fff;
+  transition: .2s ease;
+}
+
+.card-body .card-body-text:hover {
+  position: absolute;
+  height: auto;
+  top: 54px;
+  padding: 0 10px;
+  border-radius: 5px;
+  box-shadow: 0 0 5px 1px  rgba(0, 0, 0, .2);
+  transform: scale(1.05);
 }
 
 .card-body .card-body-actions {
