@@ -1,0 +1,14 @@
+section:first-of-type {
+  display: grid;
+}
+
+section:first-of-type input {
+  border: none;
+  background-color: #f3f6f7;
+  padding: 20px;
+  font-size: 20px;
+}
+
+section:first-of-type input::placeholder {
+  color: #bdcacf;
+}

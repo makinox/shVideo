@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl } from '@angular/forms';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { MoviesService } from 'src/app/services/movies/movies.service';
 
@@ -15,8 +14,8 @@ export class HomeComponent implements OnInit {
   ) {}
 
   data: Array<object>;
+  name: string;
   genres: Array<object>;
-  name = '';
   genero = '';
   year = '2020';
   last: string;
@@ -47,31 +46,45 @@ export class HomeComponent implements OnInit {
     this.last = 'data';
   }
 
-  async handleChange() {
-    if (this.name) {
-      let data: Array<object> = [{}];
-      if (window.location.pathname === '/series') {
-        data = await this.mService.getSerieByName(
-          this.name.trim(),
-          this.year,
-          this.returnPage(true)
-        );
-      } else if (window.location.pathname === '/favoritos') {
-        data = await this.mService.getFavorites();
-      } else {
-        data = await this.mService.getMovieByName(
-          this.name.trim(),
-          this.year,
-          this.returnPage(true)
-        );
-      }
-      this.data = data;
-      this.last = 'search';
+  async handleSearch(name: string) {
+    // console.log(name);
+    if (name) {
+      this.data = await this.mService.getMovieByName(
+        name.trim(),
+        this.year,
+        this.returnPage(true)
+      );
+      this.name = name;
     } else {
       this.getData();
-      this.last = 'data';
     }
   }
+
+  // async handleChange() {
+  //   if (this.name) {
+  //     let data: Array<object> = [{}];
+  //     if (window.location.pathname === '/series') {
+  //       data = await this.mService.getSerieByName(
+  //         this.name.trim(),
+  //         this.year,
+  //         this.returnPage(true)
+  //       );
+  //     } else if (window.location.pathname === '/favoritos') {
+  //       data = await this.mService.getFavorites();
+  //     } else {
+  //       data = await this.mService.getMovieByName(
+  //         this.name.trim(),
+  //         this.year,
+  //         this.returnPage(true)
+  //       );
+  //     }
+  //     this.data = data;
+  //     this.last = 'search';
+  //   } else {
+  //     this.getData();
+  //     this.last = 'data';
+  //   }
+  // }
 
   async handleFilters() {
     let data: Array<object> = [{}];
@@ -125,7 +138,7 @@ export class HomeComponent implements OnInit {
     if (this.last === 'data') {
       this.getData();
     } else if (this.last === 'search') {
-      this.handleChange();
+      this.handleSearch(this.name);
     } else {
       this.handleFilters();
     }
