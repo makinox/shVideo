@@ -28,7 +28,7 @@ export class HomeComponent implements OnInit {
     await this.getData();
     const genres = await this.mService.getMovieGenres(this.returnPage(true));
     this.genres = genres;
-    this.favorites = await JSON.parse(localStorage.getItem('favorites'));
+    // this.favorites = await JSON.parse(localStorage.getItem('favorites'));
     this.isFavoritePage =
       window.location.pathname === '/favoritos' ? true : false;
   }
@@ -155,18 +155,21 @@ export class HomeComponent implements OnInit {
     }
   }
 
-  async handleModal(video: string = '') {
-    this.modal = true;
-    const results = await this.mService.getVideo(video);
-    try {
-      this.videoModal = this.sanitizer.bypassSecurityTrustResourceUrl(
-        `https://www.youtube.com/embed/${results}`
-      );
-    } catch {
-      this.videoModal = this.sanitizer.bypassSecurityTrustResourceUrl(
-        'https://www.youtube.com/embed/gXlwCEU_4t8'
-      );
-    }
+  // async handleModal(video: string = '') {
+  //   this.modal = true;
+  //   const results = await this.mService.getVideo(video);
+  //   try {
+  //     this.videoModal = `https://www.youtube.com/embed/${results}`;
+  //   } catch {
+  //     this.videoModal = 'https://www.youtube.com/embed/gXlwCEU_4t8';
+  //   }
+  // }
+
+  openModal(video) {
+    this.mService.getVideo(video).then((res) => {
+      this.modal = true;
+      this.videoModal = `https://www.youtube.com/embed/${res}`;
+    });
   }
 
   public closeModal(): void {
@@ -175,23 +178,23 @@ export class HomeComponent implements OnInit {
     this.videoModal = null;
   }
 
-  async addFavorites(media: object | any) {
-    if (this.favorites) {
-      const el = this.favorites.filter((elem: any) => elem.id === media.id)[0];
-      if (!el) {
-        this.favorites.push(media);
-      }
-    } else {
-      this.favorites = [media];
-    }
-    await localStorage.setItem('favorites', JSON.stringify(this.favorites));
-    window.alert('Agregado a favoritos! 🙂');
-  }
+  // async addFavorites(media: object | any) {
+  //   if (this.favorites) {
+  //     const el = this.favorites.filter((elem: any) => elem.id === media.id)[0];
+  //     if (!el) {
+  //       this.favorites.push(media);
+  //     }
+  //   } else {
+  //     this.favorites = [media];
+  //   }
+  //   await localStorage.setItem('favorites', JSON.stringify(this.favorites));
+  //   window.alert('Agregado a favoritos! 🙂');
+  // }
 
-  async removeFavorites(media: object | any) {
-    this.favorites = this.favorites.filter((elem: any) => elem.id !== media.id);
-    await localStorage.setItem('favorites', JSON.stringify(this.favorites));
-    window.alert('Removido de favoritos! 🙁');
-    this.getData();
-  }
+  // async removeFavorites(media: object | any) {
+  //   this.favorites = this.favorites.filter((elem: any) => elem.id !== media.id);
+  //   await localStorage.setItem('favorites', JSON.stringify(this.favorites));
+  //   window.alert('Removido de favoritos! 🙁');
+  //   this.getData();
+  // }
 }
