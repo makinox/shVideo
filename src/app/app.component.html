@@ -8,6 +8,12 @@
     box-sizing: border-box;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    margin: 0;
+  }
+
+  body,
+  html {
+    margin: 0;
   }
 
   h1,
@@ -33,7 +39,7 @@
       <a routerLink="/movies" [routerLinkActive]="['active']">Movies</a>
     </div>
     <div>
-      <a routerLink="/series" [routerLinkActive]="['active']">Series</a>
+      <a routerLink="/config" [routerLinkActive]="['active']">Series</a>
     </div>
     <div>
       <a routerLink="/favoritos" [routerLinkActive]="['active']">Favoritos</a>

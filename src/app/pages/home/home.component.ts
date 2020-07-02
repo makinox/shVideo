@@ -1,17 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
-import {
-  getMovies,
-  getSeries,
-  getMovieByName,
-  getSerieByName,
-  getMovieGenres,
-  getMoviesByFilters,
-  getSeriesByFilters,
-  getVideo,
-  getFavorites,
-} from '../../services/movies.service';
+import { MoviesService } from 'src/app/services/movies/movies.service';
 
 @Component({
   selector: 'app-home',
@@ -19,23 +9,26 @@ import {
   styleUrls: ['./home.component.css'],
 })
 export class HomeComponent implements OnInit {
-  constructor(private sanitizer: DomSanitizer) {}
+  constructor(
+    private sanitizer: DomSanitizer,
+    private mService: MoviesService
+  ) {}
 
-  data: Array<Object>;
-  genres: Array<Object>;
+  data: Array<object>;
+  genres: Array<object>;
   name = new FormControl('');
   genero = new FormControl('');
   year = new FormControl('');
   last: string;
-  modal: boolean = false;
+  modal = false;
   videoModal: SafeResourceUrl;
-  favorites: Array<Object>;
-  isFavoritePage: boolean = false;
+  favorites: Array<object>;
+  isFavoritePage = false;
 
   async ngOnInit() {
     await this.getData();
     let genres: object = {};
-    genres = await getMovieGenres(this.returnPage(true));
+    genres = await this.mService.getMovieGenres(this.returnPage(true));
     this.genres = genres['genres'];
     this.favorites = await JSON.parse(localStorage.getItem('favorites'));
     this.isFavoritePage =
@@ -45,11 +38,11 @@ export class HomeComponent implements OnInit {
   async getData() {
     let data: object = {};
     if (window.location.pathname === '/series') {
-      data = await getSeries(this.returnPage(true));
+      data = await this.mService.getSeries(this.returnPage(true));
     } else if (window.location.pathname === '/favoritos') {
-      data = await getFavorites();
+      data = await this.mService.getFavorites();
     } else {
-      data = await getMovies(this.returnPage(true));
+      data = await this.mService.getMovies(this.returnPage(true));
     }
     this.data = data['results'];
     this.last = 'data';
@@ -59,15 +52,15 @@ export class HomeComponent implements OnInit {
     if (this.name.value) {
       let data: object = {};
       if (window.location.pathname === '/series') {
-        data = await getSerieByName(
+        data = await this.mService.getSerieByName(
           this.name.value.trim(),
           this.year.value,
           this.returnPage(true)
         );
       } else if (window.location.pathname === '/favoritos') {
-        data = await getFavorites();
+        data = await this.mService.getFavorites();
       } else {
-        data = await getMovieByName(
+        data = await this.mService.getMovieByName(
           this.name.value.trim(),
           this.year.value,
           this.returnPage(true)
@@ -85,29 +78,29 @@ export class HomeComponent implements OnInit {
     let data: object = {};
     if (window.location.pathname === '/series') {
       if (this.year.value) {
-        data = await getSeriesByFilters(
+        data = await this.mService.getSeriesByFilters(
           this.year.value,
           this.genero.value,
           this.returnPage(true)
         );
       } else {
-        data = await getSeriesByFilters(
+        data = await this.mService.getSeriesByFilters(
           '2019',
           this.genero.value,
           this.returnPage(true)
         );
       }
     } else if (window.location.pathname === '/favoritos') {
-      data = await getFavorites();
+      data = await this.mService.getFavorites();
     } else {
       if (this.year.value) {
-        data = await getMoviesByFilters(
+        data = await this.mService.getMoviesByFilters(
           this.year.value,
           this.genero.value,
           this.returnPage(true)
         );
       } else {
-        data = await getMoviesByFilters(
+        data = await this.mService.getMoviesByFilters(
           '2019',
           this.genero.value,
           this.returnPage(true)
@@ -149,7 +142,7 @@ export class HomeComponent implements OnInit {
 
   async handleModal(video: string = '') {
     this.modal = !this.modal;
-    const { results } = await getVideo(video);
+    const { results } = await this.mService.getVideo(video);
     try {
       this.videoModal = this.sanitizer.bypassSecurityTrustResourceUrl(
         'https://www.youtube.com/embed/' + results[0]['key']
