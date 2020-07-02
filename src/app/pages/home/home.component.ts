@@ -27,16 +27,15 @@ export class HomeComponent implements OnInit {
 
   async ngOnInit() {
     await this.getData();
-    let genres: object = {};
-    genres = await this.mService.getMovieGenres(this.returnPage(true));
-    this.genres = genres['genres'];
+    const genres = await this.mService.getMovieGenres(this.returnPage(true));
+    this.genres = genres;
     this.favorites = await JSON.parse(localStorage.getItem('favorites'));
     this.isFavoritePage =
       window.location.pathname === '/favoritos' ? true : false;
   }
 
   async getData() {
-    let data: object = {};
+    let data: Array<object> = [{}];
     if (window.location.pathname === '/series') {
       data = await this.mService.getSeries(this.returnPage(true));
     } else if (window.location.pathname === '/favoritos') {
@@ -44,13 +43,13 @@ export class HomeComponent implements OnInit {
     } else {
       data = await this.mService.getMovies(this.returnPage(true));
     }
-    this.data = data['results'];
+    this.data = data;
     this.last = 'data';
   }
 
   async handleChange() {
     if (this.name) {
-      let data: object = {};
+      let data: Array<object> = [{}];
       if (window.location.pathname === '/series') {
         data = await this.mService.getSerieByName(
           this.name.trim(),
@@ -66,7 +65,7 @@ export class HomeComponent implements OnInit {
           this.returnPage(true)
         );
       }
-      this.data = data['results'];
+      this.data = data;
       this.last = 'search';
     } else {
       this.getData();
@@ -75,7 +74,7 @@ export class HomeComponent implements OnInit {
   }
 
   async handleFilters() {
-    let data: object = {};
+    let data: Array<object> = [{}];
     if (window.location.pathname === '/series') {
       if (this.year) {
         data = await this.mService.getSeriesByFilters(
@@ -108,7 +107,7 @@ export class HomeComponent implements OnInit {
         );
       }
     }
-    this.data = data['results'];
+    this.data = data;
     this.last = 'filters';
   }
 
@@ -118,7 +117,9 @@ export class HomeComponent implements OnInit {
       page++;
       window.location.hash = `page=${page}`;
     } else {
-      if (page) page--;
+      if (page) {
+        page--;
+      }
       window.location.hash = `page=${page}`;
     }
     if (this.last === 'data') {
@@ -143,10 +144,10 @@ export class HomeComponent implements OnInit {
 
   async handleModal(video: string = '') {
     this.modal = !this.modal;
-    const { results } = await this.mService.getVideo(video);
+    const results = await this.mService.getVideo(video);
     try {
       this.videoModal = this.sanitizer.bypassSecurityTrustResourceUrl(
-        'https://www.youtube.com/embed/' + results[0]['key']
+        'https://www.youtube.com/embed/' + results
       );
     } catch {
       this.videoModal = this.sanitizer.bypassSecurityTrustResourceUrl(
@@ -155,9 +156,9 @@ export class HomeComponent implements OnInit {
     }
   }
 
-  async addFavorites(media: object) {
+  async addFavorites(media: object | any) {
     if (this.favorites) {
-      const el = this.favorites.filter((el) => el['id'] === media['id'])[0];
+      const el = this.favorites.filter((elem: any) => elem.id === media.id)[0];
       if (!el) {
         this.favorites.push(media);
       }
@@ -168,8 +169,8 @@ export class HomeComponent implements OnInit {
     window.alert('Agregado a favoritos! 🙂');
   }
 
-  async removeFavorites(media: object) {
-    this.favorites = this.favorites.filter((el) => el['id'] != media['id']);
+  async removeFavorites(media: object | any) {
+    this.favorites = this.favorites.filter((elem: any) => elem.id !== media.id);
     await localStorage.setItem('favorites', JSON.stringify(this.favorites));
     window.alert('Removido de favoritos! 🙁');
     this.getData();

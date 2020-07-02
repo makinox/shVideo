@@ -14,7 +14,7 @@ export class MoviesService {
       `${this.base}movie/popular?api_key=${environment.key}&page=${page}&&language=es-ES`
     );
     const body = await query.json();
-    return body;
+    return body.results;
   }
 
   async getSeries(page: number = 1) {
@@ -22,7 +22,7 @@ export class MoviesService {
       `${this.base}tv/popular?api_key=${environment.key}&page=${page}&&language=es-ES`
     );
     const body = await query.json();
-    return body;
+    return body.results;
   }
 
   async getMovieByName(name: string, search: string = '', page: number = 1) {
@@ -30,7 +30,7 @@ export class MoviesService {
       `${this.base}search/movie?api_key=${environment.key}&query=${name}&year=${search}&page=${page}&&language=es-ES`
     );
     const body = await query.json();
-    return body;
+    return body.results;
   }
 
   async getSerieByName(name: string, search: string = '', page: number = 1) {
@@ -46,7 +46,7 @@ export class MoviesService {
       `${this.base}genre/movie/list?api_key=${environment.key}&page=${page}&&language=es-ES`
     );
     const body = await query.json();
-    return body;
+    return body.genres;
   }
 
   async getMoviesByFilters(
@@ -58,7 +58,7 @@ export class MoviesService {
       `${this.base}discover/movie?api_key=${environment.key}&sort_by=popularity.desc&with_genres=${genre}&year=${year}&page=${page}&&language=es-ES`
     );
     const body = await query.json();
-    return body;
+    return body.results;
   }
 
   async getSeriesByFilters(
@@ -70,8 +70,8 @@ export class MoviesService {
       `${this.base}discover/tv?api_key=${environment.key}&sort_by=popularity.desc&with_genres=${genre}&first_air_date_year=${year}&page=${page}&&language=es-ES`
     );
     const body = await query.json();
-    console.log(body);
-    return body;
+    // console.log(body);
+    return body.results;
   }
 
   async getVideo(video: string) {
@@ -79,10 +79,11 @@ export class MoviesService {
       `${this.base}movie/${video}/videos?api_key=${environment.key}`
     );
     const body = await query.json();
-    return body;
+    console.log(body.results[0].key);
+    return body.results[0].key;
   }
 
   async getFavorites() {
-    return await { results: JSON.parse(localStorage.getItem('favorites')) };
+    return await { ...JSON.parse(localStorage.getItem('favorites')) };
   }
 }
