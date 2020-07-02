@@ -1,9 +1,13 @@
 <section>
-  <input type="text" placeholder="🔍 Busca películas, series o videos" [formControl]="name" (ngModelChange)="handleChange($event)">
+  <input
+    type="text"
+    placeholder="🔍 Busca películas, series o videos"
+    [formControl]="name"
+    (ngModelChange)="handleChange()"
+  />
 </section>
 
 <section>
-
   <div class="dashboard-header">
     <h1>Descubra nuevas películas y programas de televisión</h1>
   </div>
@@ -28,40 +32,52 @@
     <div>
       <label>Género</label>
       <select [formControl]="genero" (ngModelChange)="handleFilters()">
-        <option value="" disabled selected >Selecciona una categoría</option>
-        <option [value]="genre.id" *ngFor="let genre of genres">{{genre.name}}</option>
+        <option value="" disabled selected>Selecciona una categoría</option>
+        <option [value]="genre.id" *ngFor="let genre of genres">{{
+          genre.name
+        }}</option>
       </select>
     </div>
   </div>
 
   <div class="dashboard-body" *ngIf="data">
     <div class="dashboard-card" *ngFor="let item of data">
-
       <div class="card-head">
-        <img [src]="'https://image.tmdb.org/t/p/w200/' + item.poster_path " [alt]="item.original_title" *ngIf="item.poster_path">
-        <img [src]="'https://picsum.photos/150/220'" [alt]="item.original_title" *ngIf="!item.poster_path">
+        <img
+          [src]="'https://image.tmdb.org/t/p/w200/' + item.poster_path"
+          [alt]="item.original_title"
+          *ngIf="item.poster_path"
+        />
+        <img
+          [src]="'https://picsum.photos/150/220'"
+          [alt]="item.original_title"
+          *ngIf="!item.poster_path"
+        />
       </div>
 
       <div class="card-body">
-
         <div class="card-body-head">
-          <h4>{{item.original_title || item.original_name}}</h4>
-          <span>{{item.vote_average}}</span>
+          <h4>{{ item.original_title || item.original_name }}</h4>
+          <span>{{ item.vote_average }}</span>
         </div>
         <div class="card-body-info">
           <span>2 horas</span>
-          <span>{{item.release_date || item.first_air_date}}</span>
-          <span>{{item.genre_ids}}</span>
+          <span>{{ item.release_date || item.first_air_date }}</span>
+          <span>{{ item.genre_ids }}</span>
         </div>
         <div class="card-body-text">
-          <p>{{item.overview}}</p>
+          <p>{{ item.overview }}</p>
         </div>
 
         <div class="card-body-actions">
           <div>
             <button (click)="handleModal(item.id)">Ver Trailer</button>
           </div>
-          <div (click)="addFavorites(item)" class="card-body-fav" *ngIf="!isFavoritePage">
+          <div
+            (click)="addFavorites(item)"
+            class="card-body-fav"
+            *ngIf="!isFavoritePage"
+          >
             <span>Favoritos </span>
             <span>❤</span>
           </div>
@@ -70,9 +86,7 @@
             <span>🙁</span>
           </div>
         </div>
-        
       </div>
-
     </div>
   </div>
 
@@ -104,9 +118,13 @@
         </div>
       </div>
       <div class="dashboard-modal-body">
-        <iframe [src]="videoModal" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <iframe
+          [src]="videoModal"
+          frameborder="0"
+          allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen
+        ></iframe>
       </div>
     </div>
   </div>
-
 </section>

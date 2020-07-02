@@ -1,25 +1,27 @@
-# ShVideo
+# ReVideo
 
-A simple app to obtain information of multimedia productions.
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.1.7.
 
-To see the project in operation, [Click here](https://shvideo-ljraopywvi.now.sh)
+## Development server
 
-## Run local enviroment
+Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
-### 1) Get the project
+## Code scaffolding
 
-Download the project as zip
+Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
 
-or
+## Build
 
-Clone in your pc `git clone https://github.com/makinox/shVideo.git`
+Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
 
-### 2) Install the dependencies
+## Running unit tests
 
-Install all dependencies with `npm install` or `yarn`
+Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
 
-### 3) Run the project
+## Running end-to-end tests
 
-Start the project with `ng serve` or `npm start`
+Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
 
-Thank you
+## Further help
+
+To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).

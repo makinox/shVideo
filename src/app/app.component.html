@@ -1,2 +1,44 @@
-<app-navbar></app-navbar>
+<style>
+  :host {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+      Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
+      "Segoe UI Symbol";
+    font-size: 14px;
+    color: #333;
+    box-sizing: border-box;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    margin: 8px 0;
+  }
+
+  p {
+    margin: 0;
+  }
+</style>
+
+<nav>
+  <section>
+    <div>
+      <a routerLink="/"><img src="../../assets/logo.svg" alt="Logo" /></a>
+    </div>
+    <div>
+      <a routerLink="/movies" [routerLinkActive]="['active']">Movies</a>
+    </div>
+    <div>
+      <a routerLink="/series" [routerLinkActive]="['active']">Series</a>
+    </div>
+    <div>
+      <a routerLink="/favoritos" [routerLinkActive]="['active']">Favoritos</a>
+    </div>
+  </section>
+</nav>
+
 <router-outlet></router-outlet>

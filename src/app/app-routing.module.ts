@@ -1,16 +1,16 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import {DashboardComponent} from './components/dashboard/dashboard.component'
+import { HomeComponent } from './pages/home/home.component';
+import { ConfigComponent } from './pages/config/config.component';
 
 const routes: Routes = [
-  {path: '', component: DashboardComponent},
-  {path: 'movies', component: DashboardComponent},
-  {path: 'series', component: DashboardComponent},
-  {path: 'favoritos', component: DashboardComponent}
+  { path: '', component: HomeComponent },
+  { path: 'config', component: ConfigComponent },
+  // { path: 'second-component', component: SecondComponent },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}
