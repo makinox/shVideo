@@ -16,9 +16,9 @@ export class HomeComponent implements OnInit {
 
   data: Array<object>;
   genres: Array<object>;
-  name = new FormControl('');
-  genero = new FormControl('');
-  year = new FormControl('');
+  name = '';
+  genero = '';
+  year = '2020';
   last: string;
   modal = false;
   videoModal: SafeResourceUrl;
@@ -49,20 +49,20 @@ export class HomeComponent implements OnInit {
   }
 
   async handleChange() {
-    if (this.name.value) {
+    if (this.name) {
       let data: object = {};
       if (window.location.pathname === '/series') {
         data = await this.mService.getSerieByName(
-          this.name.value.trim(),
-          this.year.value,
+          this.name.trim(),
+          this.year,
           this.returnPage(true)
         );
       } else if (window.location.pathname === '/favoritos') {
         data = await this.mService.getFavorites();
       } else {
         data = await this.mService.getMovieByName(
-          this.name.value.trim(),
-          this.year.value,
+          this.name.trim(),
+          this.year,
           this.returnPage(true)
         );
       }
@@ -77,32 +77,33 @@ export class HomeComponent implements OnInit {
   async handleFilters() {
     let data: object = {};
     if (window.location.pathname === '/series') {
-      if (this.year.value) {
+      if (this.year) {
         data = await this.mService.getSeriesByFilters(
-          this.year.value,
-          this.genero.value,
+          this.year,
+          this.genero,
           this.returnPage(true)
         );
       } else {
         data = await this.mService.getSeriesByFilters(
           '2019',
-          this.genero.value,
+          this.genero,
           this.returnPage(true)
         );
       }
     } else if (window.location.pathname === '/favoritos') {
       data = await this.mService.getFavorites();
     } else {
-      if (this.year.value) {
+      console.log({ year: this.year, genero: this.genero });
+      if (this.year) {
         data = await this.mService.getMoviesByFilters(
-          this.year.value,
-          this.genero.value,
+          this.year,
+          this.genero,
           this.returnPage(true)
         );
       } else {
         data = await this.mService.getMoviesByFilters(
           '2019',
-          this.genero.value,
+          this.genero,
           this.returnPage(true)
         );
       }

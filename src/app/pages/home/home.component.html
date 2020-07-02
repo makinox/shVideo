@@ -2,7 +2,7 @@
   <input
     type="text"
     placeholder="🔍 Busca películas, series o videos"
-    [formControl]="name"
+    [(ngModel)]="name"
     (ngModelChange)="handleChange()"
   />
 </section>
@@ -15,8 +15,8 @@
   <div class="dashboard-options">
     <div>
       <label>Año</label>
-      <select [formControl]="year" (ngModelChange)="handleFilters()">
-        <option value="" selected>2020</option>
+      <select [(ngModel)]="year" (ngModelChange)="handleFilters()">
+        <option value="2020" selected>2020</option>
         <option value="2019">2019</option>
         <option value="2018">2018</option>
         <option value="2017">2017</option>
@@ -32,7 +32,7 @@
     </div>
     <div>
       <label>Género</label>
-      <select [formControl]="genero" (ngModelChange)="handleFilters()">
+      <select [(ngModel)]="genero" (ngModelChange)="handleFilters()">
         <option value="" disabled selected>Selecciona una categoría</option>
         <option [value]="genre.id" *ngFor="let genre of genres">{{
           genre.name
