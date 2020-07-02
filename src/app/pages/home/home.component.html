@@ -101,24 +101,9 @@
     </div>
   </div>
 
-  <div class="dashboard-modal" *ngIf="modal">
-    <div class="dashboard-modal-content">
-      <div class="dashboard-modal-header">
-        <div>
-          <h2></h2>
-        </div>
-        <div>
-          <button (click)="handleModal()"><span>&times;</span></button>
-        </div>
-      </div>
-      <div class="dashboard-modal-body">
-        <iframe
-          [src]="videoModal"
-          frameborder="0"
-          allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-          allowfullscreen
-        ></iframe>
-      </div>
-    </div>
-  </div>
+  <app-modal
+    [modal]="modal"
+    (closeEvent)="closeModal()"
+    [videoModal]="videoModal"
+  ></app-modal>
 </section>

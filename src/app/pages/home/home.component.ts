@@ -156,17 +156,23 @@ export class HomeComponent implements OnInit {
   }
 
   async handleModal(video: string = '') {
-    this.modal = !this.modal;
+    this.modal = true;
     const results = await this.mService.getVideo(video);
     try {
       this.videoModal = this.sanitizer.bypassSecurityTrustResourceUrl(
-        'https://www.youtube.com/embed/' + results
+        `https://www.youtube.com/embed/${results}`
       );
     } catch {
       this.videoModal = this.sanitizer.bypassSecurityTrustResourceUrl(
         'https://www.youtube.com/embed/gXlwCEU_4t8'
       );
     }
+  }
+
+  public closeModal(): void {
+    // console.log('cancel');
+    this.modal = false;
+    this.videoModal = null;
   }
 
   async addFavorites(media: object | any) {

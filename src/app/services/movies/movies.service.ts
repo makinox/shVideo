@@ -79,7 +79,7 @@ export class MoviesService {
       `${this.base}movie/${video}/videos?api_key=${environment.key}`
     );
     const body = await query.json();
-    console.log(body.results[0].key);
+    // console.log(body.results[0].key);
     return body.results[0].key;
   }
 

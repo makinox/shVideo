@@ -212,50 +212,6 @@ section:last-of-type {
   box-shadow: 2px 2px 10px 0 rgba(0, 0, 0, 0.2);
 }
 
-.dashboard-modal {
-  position: fixed;
-  z-index: 1;
-  padding-top: 100px;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  overflow: auto;
-  background-color: rgba(0, 0, 0, 0.4);
-}
-
-.dashboard-modal-content {
-  margin: auto;
-  padding: 20px;
-  width: 70%;
-}
-
-.dashboard-modal-header {
-  display: grid;
-  grid-template-columns: 0.9fr 0.1fr;
-  align-items: center;
-}
-
-.dashboard-modal-header h2 {
-  margin: 0;
-}
-
-.dashboard-modal-header button {
-  cursor: pointer;
-  color: #fff;
-  font-size: 50px;
-  background: none;
-  border: none;
-}
-
-.dashboard-modal-body iframe {
-  top: 0;
-  left: 0;
-  border: 0;
-  width: 100%;
-  height: 60vh;
-}
-
 @media (max-width: 1125px) {
   .dashboard-body {
     grid-gap: 25px 2px;
@@ -275,10 +231,6 @@ section:last-of-type {
 @media (max-width: 600px) {
   .dashboard-options div:last-of-type select {
     width: auto;
-  }
-
-  .dashboard-modal-content {
-    width: 90%;
   }
 }
 
