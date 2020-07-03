@@ -1,6 +1,7 @@
 .dashboard-header h1 {
   color: #7a8e94;
   font-weight: 400;
+  text-align: center;
   font-size: 23px;
 }
 
@@ -12,7 +13,8 @@ section:last-of-type {
 
 .dashboard-options {
   display: flex;
-  justify-content: left;
+  justify-content: space-evenly;
+  text-align: center;
 }
 
 .dashboard-options div {

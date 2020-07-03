@@ -114,7 +114,7 @@ export class HomeComponent implements OnInit {
     }
     if (this.name) {
       this.handleSearch(this.name);
-    } else if (this.year !== '2020' || this.genero) {
+    } else if (this.year !== '2077' || this.genero) {
       this.handleFilters();
     } else {
       this.getData();

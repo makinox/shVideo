@@ -11,4 +11,5 @@ section:first-of-type input {
 
 section:first-of-type input::placeholder {
   color: #a3aeb3;
+  text-align: center;
 }
