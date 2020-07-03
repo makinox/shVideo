@@ -8,6 +8,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SearchComponent } from './components/search/search.component';
 import { ModalComponent } from './components/modal/modal.component';
 import { CardComponent } from './components/card/card.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { CardComponent } from './components/card/card.component';
     SearchComponent,
     ModalComponent,
     CardComponent,
+    NavbarComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, FormsModule, ReactiveFormsModule],
   providers: [],
