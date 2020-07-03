@@ -84,6 +84,6 @@ export class MoviesService {
   }
 
   async getFavorites() {
-    return await { ...JSON.parse(localStorage.getItem('favorites')) };
+    return await JSON.parse(localStorage.getItem('favorites'));
   }
 }

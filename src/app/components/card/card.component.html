@@ -33,12 +33,12 @@
       <div
         (click)="addFavorites(item)"
         class="card-body-fav"
-        *ngIf="!isFavoritePage"
+        *ngIf="!isFavoritePage && !activeFav"
       >
         <span>Favoritos </span>
         <span>❤</span>
       </div>
-      <div (click)="removeFavorites(item)" *ngIf="isFavoritePage">
+      <div (click)="removeFavorites(item)" *ngIf="isFavoritePage || activeFav">
         <span>Remover</span>
         <span>🙁</span>
       </div>

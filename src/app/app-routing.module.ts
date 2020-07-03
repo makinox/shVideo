@@ -4,8 +4,9 @@ import { HomeComponent } from './pages/home/home.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
+  { path: 'movies', component: HomeComponent },
   { path: 'series', component: HomeComponent },
-  { path: 'favorites', component: HomeComponent },
+  { path: 'favoritos', component: HomeComponent },
 ];
 
 @NgModule({
