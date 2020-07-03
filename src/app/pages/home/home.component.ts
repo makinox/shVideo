@@ -13,7 +13,7 @@ export class HomeComponent implements OnInit {
   name: string;
   genres: Array<object>;
   genero = '';
-  year = '2020';
+  year = '2077';
   last: string;
   modal = false;
   videoModal: string;
