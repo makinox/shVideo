@@ -1,5 +1,4 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
-import { SafeResourceUrl } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-modal',
@@ -8,7 +7,7 @@ import { SafeResourceUrl } from '@angular/platform-browser';
 })
 export class ModalComponent {
   @Input() modal = false;
-  @Input() videoModal: SafeResourceUrl;
+  @Input() videoModal: string;
   @Output() closeEvent = new EventEmitter<void>();
 
   constructor() {}

@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { SafeResourceUrl } from '@angular/platform-browser';
 import { MoviesService } from 'src/app/services/movies/movies.service';
 
 @Component({
@@ -17,7 +16,7 @@ export class HomeComponent implements OnInit {
   year = '2020';
   last: string;
   modal = false;
-  videoModal: SafeResourceUrl;
+  videoModal: string;
   favorites: Array<object>;
   isFavoritePage = false;
 
@@ -133,21 +132,17 @@ export class HomeComponent implements OnInit {
     }
   }
 
-  // async handleModal(video: string = '') {
-  //   this.modal = true;
-  //   const results = await this.mService.getVideo(video);
-  //   try {
-  //     this.videoModal = `https://www.youtube.com/embed/${results}`;
-  //   } catch {
-  //     this.videoModal = 'https://www.youtube.com/embed/gXlwCEU_4t8';
-  //   }
-  // }
-
   public openModal(video): void {
-    this.mService.getVideo(video).then((res) => {
-      this.modal = true;
-      this.videoModal = `https://www.youtube.com/embed/${res}`;
-    });
+    this.mService
+      .getVideo(video)
+      .then((res) => {
+        this.modal = true;
+        this.videoModal = `https://www.youtube.com/embed/${res}`;
+      })
+      .catch(() => {
+        this.modal = true;
+        this.videoModal = 'https://www.youtube.com/embed/gXlwCEU_4t8';
+      });
   }
 
   public closeModal(): void {

@@ -9,6 +9,7 @@ import { SearchComponent } from './components/search/search.component';
 import { ModalComponent } from './components/modal/modal.component';
 import { CardComponent } from './components/card/card.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
+import { SafePipe } from './services/safe/safe.pipe';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
     ModalComponent,
     CardComponent,
     NavbarComponent,
+    SafePipe,
   ],
   imports: [BrowserModule, AppRoutingModule, FormsModule, ReactiveFormsModule],
   providers: [],
