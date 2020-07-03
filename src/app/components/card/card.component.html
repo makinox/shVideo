@@ -15,12 +15,12 @@
   <div class="card-body">
     <div class="card-body-head">
       <h4>{{ item.original_title || item.original_name }}</h4>
-      <span>{{ item.vote_average }}</span>
+      <span>⭐{{ item.vote_average }}</span>
     </div>
     <div class="card-body-info">
-      <span>2 horas</span>
-      <span>{{ item.release_date || item.first_air_date }}</span>
-      <span>{{ item.genre_ids }}</span>
+      <span>⌚2 horas</span>
+      <span>📅{{ item.release_date || item.first_air_date }}</span>
+      <!-- <span>{{ item.genre_ids }}</span> -->
     </div>
     <div class="card-body-text">
       <p>{{ item.overview }}</p>

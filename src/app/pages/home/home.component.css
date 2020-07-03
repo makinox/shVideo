@@ -29,7 +29,8 @@ section:last-of-type {
 
 .dashboard-options div select {
   border: none;
-  box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+  box-shadow: 0 0 1px 1px rgba(147, 248, 255, 0.9);
   margin-bottom: 40px;
   padding: 7px 20px;
 }
@@ -88,7 +89,7 @@ section:last-of-type {
 
 @media (max-width: 1004px) {
   section:last-of-type {
-    grid-template-columns: minmax(auto, 90%);
+    grid-template-columns: minmax(auto, 98%);
   }
 
   .dashboard-body {

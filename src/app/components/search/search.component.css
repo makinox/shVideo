@@ -4,11 +4,11 @@ section:first-of-type {
 
 section:first-of-type input {
   border: none;
-  background-color: #f3f6f7;
+  background-color: #e3fdff;
   padding: 20px;
   font-size: 20px;
 }
 
 section:first-of-type input::placeholder {
-  color: #bdcacf;
+  color: #a3aeb3;
 }
