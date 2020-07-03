@@ -38,7 +38,7 @@ export class MoviesService {
       `${this.base}search/tv?api_key=${environment.key}&query=${name}&year=${search}&page=${page}&&language=es-ES`
     );
     const body = await query.json();
-    return body;
+    return body.results;
   }
 
   async getMovieGenres(page: number = 1) {

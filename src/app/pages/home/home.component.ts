@@ -19,111 +19,90 @@ export class HomeComponent implements OnInit {
   modal = false;
   videoModal: SafeResourceUrl;
   favorites: Array<object>;
+  isFavoritePage = false;
 
-  async ngOnInit() {
+  public async ngOnInit(): Promise<void> {
     await this.getData();
     this.genres = await this.mService.getMovieGenres(this.returnPage(true));
-    // this.favorites = await JSON.parse(localStorage.getItem('favorites'));
+    this.favorites = await JSON.parse(localStorage.getItem('favorites'));
+    this.isFavoritePage =
+      window.location.pathname === '/favoritos' ? true : false;
   }
 
-  async getData() {
-    const data = await this.mService.getMovies(this.returnPage(true));
+  public async getData(): Promise<void> {
+    let data: Array<object> = [{}];
+    if (window.location.pathname === '/series') {
+      data = await this.mService.getSeries(this.returnPage(true));
+    } else if (window.location.pathname === '/favoritos') {
+      data = await this.mService.getFavorites();
+    } else {
+      data = await this.mService.getMovies(this.returnPage(true));
+    }
     this.data = data;
   }
 
-  async handleSearch(name: string) {
-    // console.log(name);
+  public async handleSearch(name: string): Promise<void> {
     if (name) {
-      this.data = await this.mService.getMovieByName(
-        name.trim(),
-        this.year,
-        this.returnPage(true)
-      );
-      this.name = name;
+      let data: Array<object> = [{}];
+      if (window.location.pathname === '/series') {
+        data = await this.mService.getSerieByName(
+          name.trim(),
+          this.year,
+          this.returnPage(true)
+        );
+      } else if (window.location.pathname === '/favoritos') {
+        data = await this.mService.getFavorites();
+      } else {
+        data = await this.mService.getMovieByName(
+          name.trim(),
+          this.year,
+          this.returnPage(true)
+        );
+      }
+      this.data = data;
     } else {
       this.getData();
     }
   }
 
-  // async handleChange() {
-  //   if (this.name) {
-  //     let data: Array<object> = [{}];
-  //     if (window.location.pathname === '/series') {
-  //       data = await this.mService.getSerieByName(
-  //         this.name.trim(),
-  //         this.year,
-  //         this.returnPage(true)
-  //       );
-  //     } else if (window.location.pathname === '/favoritos') {
-  //       data = await this.mService.getFavorites();
-  //     } else {
-  //       data = await this.mService.getMovieByName(
-  //         this.name.trim(),
-  //         this.year,
-  //         this.returnPage(true)
-  //       );
-  //     }
-  //     this.data = data;
-  //     this.last = 'search';
-  //   } else {
-  //     this.getData();
-  //     this.last = 'data';
-  //   }
-  // }
-
-  async handleFilters() {
+  public async handleFilters(): Promise<void> {
     let data: Array<object> = [{}];
-    // if (window.location.pathname === '/series') {
-    //   if (this.year) {
-    //     data = await this.mService.getSeriesByFilters(
-    //       this.year,
-    //       this.genero,
-    //       this.returnPage(true)
-    //     );
-    //   } else {
-    //     data = await this.mService.getSeriesByFilters(
-    //       '2019',
-    //       this.genero,
-    //       this.returnPage(true)
-    //     );
-    //   }
-    // } else if (window.location.pathname === '/favoritos') {
-    //   data = await this.mService.getFavorites();
-    // } else {
-    //   console.log({ year: this.year, genero: this.genero });
-    //   if (this.year) {
-    //     data = await this.mService.getMoviesByFilters(
-    //       this.year,
-    //       this.genero,
-    //       this.returnPage(true)
-    //     );
-    //   } else {
-    //     data = await this.mService.getMoviesByFilters(
-    //       '2020',
-    //       this.genero,
-    //       this.returnPage(true)
-    //     );
-    //   }
-    // }
-    console.log({ year: this.year, gen: this.genero });
-    if (this.year) {
-      data = await this.mService.getMoviesByFilters(
-        this.year,
-        this.genero,
-        this.returnPage(true)
-      );
+    if (window.location.pathname === '/series') {
+      if (this.year) {
+        data = await this.mService.getSeriesByFilters(
+          this.year,
+          this.genero,
+          this.returnPage(true)
+        );
+      } else {
+        data = await this.mService.getSeriesByFilters(
+          '2020',
+          this.genero,
+          this.returnPage(true)
+        );
+      }
+    } else if (window.location.pathname === '/favoritos') {
+      data = await this.mService.getFavorites();
     } else {
-      data = await this.mService.getMoviesByFilters(
-        '2020',
-        this.genero,
-        this.returnPage(true)
-      );
+      // console.log({ year: this.year, genero: this.genero });
+      if (this.year) {
+        data = await this.mService.getMoviesByFilters(
+          this.year,
+          this.genero,
+          this.returnPage(true)
+        );
+      } else {
+        data = await this.mService.getMoviesByFilters(
+          '2020',
+          this.genero,
+          this.returnPage(true)
+        );
+      }
     }
     this.data = data;
-    this.last = 'filters';
   }
 
-  handlePage(direction: string | any) {
+  public handlePage(direction: string | any): void {
     let page: number = this.returnPage();
     if (direction) {
       page++;
@@ -141,16 +120,9 @@ export class HomeComponent implements OnInit {
     } else {
       this.getData();
     }
-    // if (this.last === 'data') {
-    //   this.getData();
-    // } else if (this.last === 'search') {
-    //   this.handleSearch(this.name);
-    // } else {
-    //   this.handleFilters();
-    // }
   }
 
-  returnPage(increase: boolean = false) {
+  private returnPage(increase: boolean = false): number {
     let page: number = window.location.hash
       ? parseInt(window.location.hash.split('=')[1], 10)
       : 0;
@@ -171,7 +143,7 @@ export class HomeComponent implements OnInit {
   //   }
   // }
 
-  openModal(video) {
+  public openModal(video): void {
     this.mService.getVideo(video).then((res) => {
       this.modal = true;
       this.videoModal = `https://www.youtube.com/embed/${res}`;
