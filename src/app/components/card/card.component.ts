@@ -10,7 +10,7 @@ export class CardComponent implements OnInit {
   @Input() isFavoritePage: boolean;
   @Output() openModal = new EventEmitter<string>();
   @Output() refresh = new EventEmitter<void>();
-  favorites = JSON.parse(localStorage.getItem('favorites'));
+  favorites = JSON.parse(localStorage.getItem('favorites')) || [];
   activeFav = false;
 
   constructor() {}
