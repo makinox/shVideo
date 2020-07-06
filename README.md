@@ -2,7 +2,7 @@
 
 Used:
 
-- Angular 9
+- Angular 10
 - Custom
 - PWA
 
